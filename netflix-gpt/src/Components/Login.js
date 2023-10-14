@@ -1,8 +1,12 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkValidData } from '../Utils/validate';
+import { auth } from '../Utils/firebase';
+import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate=useNavigate();
   const [isSignInForm,setIsSignInForm]=useState(true)
   const [errorMessage,setErrorMessage]=useState(null)
   const email=useRef(null);
@@ -12,8 +16,44 @@ const Login = () => {
 
   };
   const handleButtonClick=()=>{
+    
     const message= checkValidData(email.current.value,password.current.value);
     setErrorMessage(message);
+    if(message)
+    return;
+    
+    if(!isSignInForm)
+    {
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        navigate('/browse')
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode+"-"+errorMessage);
+        // ..
+      });
+    }
+     else{
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        navigate('/browse');
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode+"-"+errorMessage);
+      });
+    }
   }
   return (
     <div>

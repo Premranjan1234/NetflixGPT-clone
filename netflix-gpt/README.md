@@ -9,6 +9,8 @@
 - useRef Hook
 - Firebase setup
 - Create signUp user account
+- Implement sign In user Api
+- Created redux store with userSlice
 
 
 # Features
