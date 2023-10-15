@@ -2,13 +2,17 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkValidData } from '../Utils/validate';
 import { auth } from '../Utils/firebase';
-import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "firebase/auth";
+import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword,updateProfile  } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../Utils/userSlice';
 
 const Login = () => {
   const navigate=useNavigate();
+  const dispatch=useDispatch();
   const [isSignInForm,setIsSignInForm]=useState(true)
   const [errorMessage,setErrorMessage]=useState(null)
+  const name=useRef(null);
   const email=useRef(null);
   const password=useRef(null);
   const toggleSignInForm=()=>{
@@ -28,7 +32,25 @@ const Login = () => {
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        navigate('/browse')
+        updateProfile(user, {
+          displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/a/ACg8ocLSJw0xvsat-EHzVD8PTmQvaFcCOxybPloqf38cf1Ssc-w=s96-c-rg-br100"
+        })
+        .then(() => {
+          const {uid,email,displayName,photoURL} = auth.currentUser;
+          dispatch(
+          addUser({uid:uid,Email:email,name:displayName,photoURL:photoURL}));
+          navigate('/browse')
+        // ...
+        })
+          
+          // Profile updated!
+          // ...
+        .catch((error) => {
+          setErrorMessage(error.message)
+          // An error occurred
+          // ...
+        });
+      
         console.log(user);
         // ...
       })
@@ -68,6 +90,7 @@ const Login = () => {
       <form onSubmit={(e)=>e.preventDefault()} className="w-3/12 bg-black p-12 absolute my-36 mx-auto left-0 right-0 text-white rounded-lg opacity-80">
         <h1 className=' p-2 font-bold text-xl'>{isSignInForm?'Sign In':'Sign Up'}</h1>
         {!isSignInForm && <input 
+        ref={name}
         type="text" placeholder='FullName' 
         className='my-4 p-4 w-full bg-gray-700'
         />}
