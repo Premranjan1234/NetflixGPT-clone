@@ -6,6 +6,7 @@ import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword,updateProfi
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/userSlice';
+import { USER_LOGO } from '../Utils/Constants';
 
 const Login = () => {
   const navigate=useNavigate();
@@ -33,13 +34,14 @@ const Login = () => {
         // Signed up 
         const user = userCredential.user;
         updateProfile(user, {
-          displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/a/ACg8ocLSJw0xvsat-EHzVD8PTmQvaFcCOxybPloqf38cf1Ssc-w=s96-c-rg-br100"
+          displayName: name.current.value, 
+          photoURL: USER_LOGO
         })
         .then(() => {
           const {uid,email,displayName,photoURL} = auth.currentUser;
           dispatch(
           addUser({uid:uid,Email:email,name:displayName,photoURL:photoURL}));
-          navigate('/browse')
+          
         // ...
         })
           
@@ -66,7 +68,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        navigate('/browse');
+        
         console.log(user);
         // ...
       })
