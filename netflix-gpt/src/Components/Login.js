@@ -59,7 +59,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode+"-"+errorMessage);
+        setErrorMessage(errorCode+"-"+errorMessage);
         // ..
       });
     }
@@ -103,7 +103,7 @@ const Login = () => {
          />
         <input 
          ref={password}
-         type="text" placeholder='Password' 
+         type="Password" placeholder='Password' 
          className='my-4 p-4 w-full bg-gray-700'
         />
         <p className="text-red-500 font-bold text-lg ">{errorMessage}</p>
