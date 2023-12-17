@@ -10,7 +10,7 @@ const Gptsearchbar = () => {
   const langKey = useSelector((store) => store.config.lang);
   const searchContent = useRef(null);
  const searchMovieTMDB = async (movies) => {
-    const data = fetch(
+    const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
         movies +
         "&include_adult=false&language=en-US&page=1",
@@ -32,6 +32,7 @@ const Gptsearchbar = () => {
       console.log(gptSearchResult.choices?.[0]?.message?.content);
       const gptMovies =
         gptSearchResult.choices?.[0]?.message.content.split(",");
+        console.log(gptMovies);
       const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
       const tmdbResults = await Promise.all(promiseArray);
       dispatch(
@@ -40,9 +41,9 @@ const Gptsearchbar = () => {
   };
   
   return (
-    <div className="pt-[10%] flex justify-center ">
+    <div className="pt-[30%] md:pt-[10%] flex justify-center ">
       <form
-        className="  bg-black w-1/2 grid grid-cols-12"
+        className=" bg-black w-full md:w-1/2 grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input

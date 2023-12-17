@@ -57,9 +57,9 @@ const handleLangChange=(e)=>{
 }
 
   return (
-    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between">
+    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-30 flex flex-col md:flex-row justify-between">
       <img
-      className="w-40"
+      className="w-40 mx-auto md:mx-0"
       src={LOGO}
       alt="logo"
       />
