@@ -4,6 +4,8 @@ import Browse from './Browse'
 import { createBrowserRouter, useNavigate } from 'react-router-dom';
 import {RouterProvider} from "react-router-dom";
 import Login from './Login';
+import Watchpage from './Watchpage';
+
 
 
 
@@ -21,6 +23,12 @@ const Body = () => {
        path:"/browse",
        element:<Browse/>
     },
+    {
+      path:"/watchpage",
+      element:<Watchpage/>
+    }
+    
+    
 
   ])
   return (
