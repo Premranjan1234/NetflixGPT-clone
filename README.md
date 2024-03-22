@@ -1,6 +1,6 @@
 Project link:https://65c4f2c70b828a2049b6e13a--roaring-scone-a85ed4.netlify.app/
       video link:https://drive.google.com/file/d/1bVxXaVnu8ONhrCvmTUE4Ww_qSj-eaIMY/view?usp=sharing
-      ## Key Features
+## Key Features
 
 - **React**: Provides an intuitive user interface for seamless navigation and interaction.
 - **Redux Toolkit**: Efficiently manages state across the application for enhanced performance.
