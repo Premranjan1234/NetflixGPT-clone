@@ -1,4 +1,8 @@
+## Project Links
 
+- [Project Link](https://65c4f2c70b828a2049b6e13a--roaring-scone-a85ed4.netlify.app/): Access the deployed web application.
+- [Video Link](https://drive.google.com/file/d/1bVxXaVnu8ONhrCvmTUE4Ww_qSj-eaIMY/view?usp=sharing): Watch the demo video showcasing the application's features.
+  
 ## Key Features
 
 - **React**: Provides an intuitive user interface for seamless navigation and interaction.
@@ -11,10 +15,6 @@
 - **Trailer Video Integration**: Fetches trailer video data from TMDB API and embeds YouTube videos in the application.
 - **Deployment**: Deploys the application to production, making it accessible to users worldwide.
 - **GitHub Best Practices**: Implements secure handling of sensitive information like API keys using `.env` files.
-## Project Links
-
-- [Project Link](https://65c4f2c70b828a2049b6e13a--roaring-scone-a85ed4.netlify.app/): Access the deployed web application.
-- [Video Link](https://drive.google.com/file/d/1bVxXaVnu8ONhrCvmTUE4Ww_qSj-eaIMY/view?usp=sharing): Watch the demo video showcasing the application's features.
 
 ## Project Setup
 
